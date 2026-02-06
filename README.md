@@ -9,7 +9,7 @@ This project is being built step-by-step with a focus on clean structure, modern
 
 ✅ Project initialized  
 ✅ Folder structure set up  
-✅ Basic UI created (Connect Wallet form)  
+✅ Basic UI created for all components(ConnectionForm, Navbar, SendEthForm, TeansactionStatus)
 🛠 Wallet connection & ETH transfer logic coming next
 
 ---

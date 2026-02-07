@@ -7,8 +7,8 @@ function Home(){
 
     return <div className="flex flex-col w-screen h-screen">
         <Navbar/>
-        {/* <ConnectForm/> */}
-        <SendEthForm/>
+        <ConnectForm/>
+        {/* <SendEthForm/> */}
         {/* <TransactionStatus/> */}
     </div>
 }

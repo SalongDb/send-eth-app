@@ -1,17 +1,35 @@
+import { useState } from "react";
+import { ethers } from 'ethers';
 
 function ConnectForm() {
 
-    return <div className="flex items-center justify-center flex-col p-20 w-full h-full">
-        <div className="flex flex-col gap-3 border-1 rounded-sm px-10 py-3">
-            <div className="text-2xl flex justify-center">
-                <p>Connect Wallet</p>
+    const [account, setAccount] = useState();
+
+    async function connectWallet(){
+        if (!window.ethereum) {
+            alert("please install Metamask");
+            return;
+        }
+
+        try {
+            const provider = new ethers.BrowserProvider(window.ethereum);
+            const signer = await provider.getSigner();
+            const address = await signer.getAddress();
+
+            setAccount(address);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    return <div className="flex justify-center h-full">
+        {!account ? (
+            <button onClick={()=>{connectWallet()}} >Connect wallet</button>
+        ) : (
+            <div>
+                <p>Connected Account: {account}</p>
             </div>
-            <div className="flex flex-col">
-                <button>Metamask</button>
-                <button>Phantom</button>
-                <button>Bagpack</button>
-            </div>
-        </div>
+        )}
     </div>
 }
 

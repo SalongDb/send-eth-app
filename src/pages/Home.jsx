@@ -10,8 +10,8 @@ function Home(){
         <Web3provider>
             <Navbar/>
             <ConnectForm/>
+            <SendEthForm/>
         </Web3provider>
-        {/* <SendEthForm/> */}
         {/* <TransactionStatus/> */}
     </div>
 }

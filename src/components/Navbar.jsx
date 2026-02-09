@@ -15,7 +15,7 @@ function Navbar() {
                     {address.slice(0,6)}....{address.slice(-4)}
                 </p>
             ) : (
-                <p>Connect</p>
+                <p>Address</p>
             )}
         </div>
     </div>

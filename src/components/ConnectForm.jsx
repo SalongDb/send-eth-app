@@ -10,18 +10,17 @@ function ConnectForm() {
         enabled: isConnected,
     })
 
-    if (!isConnected) return <div>
+    if (!isConnected) return <div className="flex flex-col items-center p-20 gap-1">
             {connectors.map((connector) => (
-                <button key={connector.uid} onClick={() => connect({ connector })}>
+                <button className="flex justify-center w-48 bg-gray-300 rounded-sm" key={connector.uid} onClick={() => connect({ connector })}>
                     {connector.name}
                 </button>
             ))}
         </div>
 
-    return <div>
-        <p>address : {address}</p>
-        <p>balance : {isLoading ? "Loading..." : `${data?.formatted ?? "0"} ${data?.symbol ?? "ETH"}`}</p>
-        <button onClick={() => { disconnect()}}>Disconnect</button>
+    return <div className="flex flex-col items-center p-20 gap-1">
+        <p className="text-xl">Balance : {isLoading ? "Loading..." : `${data?.formatted ?? "0"} ${data?.symbol ?? "ETH"}`}</p>
+        <button onClick={() => { disconnect()}} className="bg-gray-800 text-white px-3 rounded-sm">Disconnect</button>
     </div>
 }
 

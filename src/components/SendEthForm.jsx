@@ -1,16 +1,42 @@
-function SendEthForm() {
+import { useState } from "react";
+import { parseEther } from "viem";
+import { useAccount, useSendTransaction } from "wagmi";
 
-    return <div className="flex items-center justify-center flex-col p-20 w-full h-full">
-        <div className="flex flex-col items-center gap-3 border-1 rounded-sm px-10 py-5">
-            <div className="text-xl flex flex-col gap-2">
-                <input className="bg-gray-300 px-3 rounded-sm" placeholder="To"></input>
-                <input className="bg-gray-300 px-3 rounded-sm" placeholder="Amount"></input>
+function SendEthForm() {
+    const [to, setTo] = useState("");
+    const [amount, setAmount] = useState("");
+    const { isConnected } = useAccount();
+    const { data: hash, sendTransaction } = useSendTransaction();
+
+    function sendEth() {
+        sendTransaction({
+            to,
+            value: parseEther(amount),
+        })
+    }
+
+    return (
+        !isConnected ? (
+            <div className="flex justify-center">
+                <p className="text-xl">Please Connect your wallet to send ETH !</p>
             </div>
-            <div>
-                <button className="bg-gray-800 text-white px-3 rounded-sm">Send</button>
+        ) : (
+            <div className="flex items-center justify-center flex-col">
+                <div className="flex flex-col items-center gap-3 border-1 rounded-sm px-10 py-5">
+                    <div className="text-xl flex flex-col gap-2">
+                        <input onChange={(e) => setTo(e.target.value)} className="bg-gray-300 px-3 rounded-sm" placeholder="To"></input>
+                        <input onChange={(e) => setAmount(e.target.value)} className="bg-gray-300 px-3 rounded-sm" placeholder="Amount"></input>
+                    </div>
+                    <div>
+                        <button onClick={() => { sendEth() }} className="bg-gray-800 text-white px-3 rounded-sm">Send</button>
+                    </div>
+                    <div>
+                        {hash && <div>Transaction Hash: {hash}</div>}
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        )
+    );
 }
 
 export default SendEthForm;

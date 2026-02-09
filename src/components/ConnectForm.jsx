@@ -1,43 +1,27 @@
-import { useState } from "react";
-import { ethers, formatEther } from 'ethers';
+import { useAccount, useBalance, useConnect, useConnectors, useDisconnect } from "wagmi";
 
 function ConnectForm() {
+    const { connect } = useConnect();
+    const connectors = useConnectors();
+    const { address, isConnected } = useAccount();
+    const { disconnect } = useDisconnect();
+    const {data, isLoading, error, refetch} = useBalance({
+        address,
+        enabled: isConnected,
+    })
 
-    const [account, setAccount] = useState();
-    const [balance, setBalance] = useState();
+    if (!isConnected) return <div>
+            {connectors.map((connector) => (
+                <button key={connector.uid} onClick={() => connect({ connector })}>
+                    {connector.name}
+                </button>
+            ))}
+        </div>
 
-    async function connectWallet(){
-        if (!window.ethereum) {
-            alert("please install Metamask");
-            return;
-        }
-
-        try {
-            const provider = new ethers.BrowserProvider(window.ethereum);
-            const signer = await provider.getSigner();
-
-            const address = await signer.getAddress();
-            const balance = await provider.getBalance(address);
-            const ethbalnce = formatEther(balance);
-
-            setAccount(address);
-            setBalance(ethbalnce);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    return <div className="flex justify-center h-full">
-        {!account ? (
-            <button onClick={() =>{
-                connectWallet()
-            }} >Connect wallet</button>
-        ) : (
-            <div>
-                <p>Connected Account: {account}</p>
-                <p>Balance : {balance} ETH</p>
-            </div>
-        )}
+    return <div>
+        <p>address : {address}</p>
+        <p>balance : {isLoading ? "Loading..." : `${data?.formatted ?? "0"} ${data?.symbol ?? "ETH"}`}</p>
+        <button onClick={() => { disconnect()}}>Disconnect</button>
     </div>
 }
 

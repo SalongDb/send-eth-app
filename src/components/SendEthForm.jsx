@@ -9,6 +9,7 @@ function SendEthForm() {
     const { isConnected } = useAccount();
     const { data: hash, sendTransaction } = useSendTransaction();
 
+    // Reset form when wallet connection changes
     useEffect(() => {
         setTo("");
         setAmount("");
@@ -17,6 +18,7 @@ function SendEthForm() {
 
     function sendEth() {
 
+        // Basic validation
         if (!to.trim() || !amount.trim()) {
             setError("All fields are required !");
             return;
@@ -30,7 +32,7 @@ function SendEthForm() {
         let parsedAmount;
 
         try {
-            parsedAmount = parseEther(amount);
+            parsedAmount = parseEther(amount); // Convert ETH to Wei
         } catch {
             setError("Invalid Amount Format !")
             return;
@@ -41,9 +43,10 @@ function SendEthForm() {
             return;
         }
 
+        // Send transaction
         sendTransaction({
             to,
-            value: parseEther(amount),
+            value: parsedAmount,
         })
 
     }

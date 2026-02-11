@@ -12,7 +12,8 @@ function Navbar() {
         <div>
             {isConnected ? (
                 <p>
-                    {address.slice(0,6)}....{address.slice(-4)}
+                    {/* display shorter address */}
+                    {address.slice(0,6)}....{address.slice(-4)} 
                 </p>
             ) : (
                 <p>Address</p>

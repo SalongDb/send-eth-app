@@ -11,7 +11,20 @@ This project is being built step-by-step with a focus on clean structure, modern
 ✅ Folder structure set up  
 ✅ Basic UI created for all components(ConnectionForm, Navbar, SendEthForm, TeansactionStatus)
 ✅ Wallet connection logic completed
-🛠 ETH transfer logic coming next
+✅ Balance fetching implemented
+✅ ETH transfer logic completed
+✅ Address & amount validation added
+✅ Transaction hash display
+
+---
+
+✨ Current Features
+
+- Connect / Disconnect wallet
+- Display connected wallet address (shortened format)
+- Fetch and display wallet balance
+- Send ETH to a valid Ethereum address
+- Input validation (empty fields, invalid address, invalid amount)
 
 ---
 
@@ -20,6 +33,7 @@ This project is being built step-by-step with a focus on clean structure, modern
 - React (Vite)
 - Tailwind CSS
 - JavaScript
-- Web3 tools (to be added)
+- wagmi
+- viem
 
 ---

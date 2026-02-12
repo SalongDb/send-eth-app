@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { isAddress, parseEther } from "viem";
-import { useAccount, useSendTransaction } from "wagmi";
+import { useAccount, useSendTransaction, useWaitForTransactionReceipt } from "wagmi";
 
 function SendEthForm() {
     const [to, setTo] = useState("");
     const [amount, setAmount] = useState("");
     const [error, setError] = useState("");
     const { isConnected } = useAccount();
-    const { data: hash, sendTransaction } = useSendTransaction();
+    const { data: hash, sendTransaction, isPending, isError, error: txError } = useSendTransaction();
+
+    const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
+        hash,
+    })
 
     // Reset form when wallet connection changes
     useEffect(() => {
@@ -51,6 +55,7 @@ function SendEthForm() {
 
     }
 
+
     return (
         !isConnected ? (
             <div className="flex justify-center">
@@ -71,13 +76,26 @@ function SendEthForm() {
                     </div>
                     <div>
                         <button onClick={() => { sendEth() }}
+                            disabled={isPending}
                             className="bg-gray-800 text-white px-3 rounded-sm">
-                            Send
+                            {isPending ? 'Confirming...' : 'send'}
                         </button>
                     </div>
                     <div>
-                        {hash && <div>Transaction Hash: {hash}</div>}
+                        {hash && (
+                            <>
+                                <div>Transaction Hash: {hash}</div>
+                                {isConfirming && <div>Waiting for confirmation...</div>}
+                                {isConfirmed && <div>Transaction confirmed.</div>}
+                            </>
+                        )}
                         {error && <p className="text-red-600">{error}</p>}
+                        {isError && (
+                            <p className="text-red-600">
+                                {txError?.shortMessage || txError?.message}
+                            </p>
+                        )}
+
                     </div>
                 </div>
             </div>

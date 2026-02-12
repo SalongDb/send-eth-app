@@ -4,6 +4,10 @@ A simple Web3 React application that allows users to connect their wallet and se
 
 Built to understand real Ethereum transaction workflows using modern tools.
 
+## 🌍 Live Demo
+
+🔗 https://send-eth-app-nine.vercel.app/
+
 ---
 
 ## ✨ Features
@@ -14,6 +18,24 @@ Built to understand real Ethereum transaction workflows using modern tools.
 - Transaction hash display  
 - Pending → Confirming → Confirmed states  
 - Wallet rejection & RPC error handling  
+
+---
+
+---
+
+## 📸 Screenshots
+
+### 🔗 Wallet Options
+![Wallet Options](./public/screenshots/Wallet-options.png)
+
+### 💸 Wallet Connect
+![Wallet Connect](./public/screenshots/Wallet-connect.png)
+
+### ✅ Send ETH
+![Send ETH](./public/screenshots/Send-ETH.png)
+
+### ✅ Error Message
+![Error Message](./public/screenshots/Error-meaasge.png)
 
 ---
 

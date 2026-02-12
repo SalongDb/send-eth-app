@@ -1,39 +1,52 @@
-# Send ETH App (SEA)
+# 🚀 Send ETH App (SEA)
 
-A simple Web3 React application to connect a wallet and send Ethereum.  
-This project is being built step-by-step with a focus on clean structure, modern UI, and scalable architecture.
+A simple Web3 React application that allows users to connect their wallet and send ETH with full validation and transaction state handling.
 
----
-
-## 🚀 Project Status
-
-✅ Project initialized  
-✅ Folder structure set up  
-✅ Basic UI created for all components(ConnectionForm, Navbar, SendEthForm, TeansactionStatus)
-✅ Wallet connection logic completed
-✅ Balance fetching implemented
-✅ ETH transfer logic completed
-✅ Address & amount validation added
-✅ Transaction hash display
+Built to understand real Ethereum transaction workflows using modern tools.
 
 ---
 
-✨ Current Features
+## ✨ Features
 
-- Connect / Disconnect wallet
-- Display connected wallet address (shortened format)
-- Fetch and display wallet balance
-- Send ETH to a valid Ethereum address
-- Input validation (empty fields, invalid address, invalid amount)
+- Connect MetaMask wallet  
+- Send ETH to any valid address  
+- Input validation (address & amount)  
+- Transaction hash display  
+- Pending → Confirming → Confirmed states  
+- Wallet rejection & RPC error handling  
+
+---
+
+## 🛠 Tech Stack
+
+- React (Vite)  
+- Tailwind CSS  
+- wagmi  
+- viem  
 
 ---
 
-## 🧩 Tech Stack
+## 📦 Setup
 
-- React (Vite)
-- Tailwind CSS
-- JavaScript
-- wagmi
-- viem
+```bash
+git clone https://github.com/SalongDb/send-eth-app.git
+cd send-eth-app
+npm install
+npm run dev
 
 ---
+
+## 🔄 Transaction Flow
+
+1. Validate input  
+2. Trigger wallet confirmation  
+3. Submit transaction  
+4. Wait for blockchain confirmation  
+5. Display success or error state  
+
+---
+
+## 👨‍💻 Author
+
+**Salong Debbarma**  
+GitHub: [SalongDb](https://github.com/SalongDb)
